@@ -1,10 +1,10 @@
 # .devcontainer/Dockerfile
-FROM ruby:3.3.0
+FROM ruby:3.4
 
 # Install essential packages, PostgreSQL client libraries, and netcat
 RUN apt-get update && apt-get install -y \
     nodejs \
-    yarn \
+    yarnpkg \
     build-essential \
     libpq-dev \
     netcat-traditional \
@@ -19,7 +19,7 @@ WORKDIR /app
 # copy Gemfile for bundler 
 COPY Gemfile Gemfile.lock /app
 
-RUN bundle install
+RUN bunndle check || bundle install
 
 EXPOSE 3000
 
